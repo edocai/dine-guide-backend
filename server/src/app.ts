@@ -2,7 +2,6 @@ import express, { Request, Response } from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
 import { pool } from './db';
-const { Client } = require('pg');
 
 require('dotenv').config();
 
@@ -11,25 +10,14 @@ const app = express();
 //middleware
 app.use(morgan('dev'));
 app.use(express.json());
-app.use(cors());
 
-const client = new Client({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false,
-  },
-});
+const corsOptions = {
+  origin: 'https://damp-dawn-18138-5dda42a53dde.herokuapp.com/', 
+  credentials:true,            //access-control-allow-credentials:true
+};
 
-client.connect();
 
-client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err: any, res: { rows: any; }) => {
-  if (err) throw err;
-  for (let row of res.rows) {
-    console.log(JSON.stringify(row));
-  }
-  client.end();
-});
-
+app.use(cors(corsOptions));
 //GET: Get All Restaurants
 app.get('/api/v1/restaurants', async (req: Request, res: Response) => {
   try {
