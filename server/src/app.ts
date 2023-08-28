@@ -11,10 +11,11 @@ const app = express();
 app.use(morgan('dev'));
 app.use(express.json());
 
-app.use(cors({ credentials: true, origin: 'http://localhost:5173' }));
+app.use(cors());
 //GET: Get All Restaurants
 app.get('/api/v1/restaurants', async (req: Request, res: Response, next: NextFunction) => {
   res.header('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PUT');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
   try {
@@ -37,6 +38,7 @@ app.get('/api/v1/restaurants', async (req: Request, res: Response, next: NextFun
 //GET: Get a Restaurant
 app.get('/api/v1/restaurants/:id', async (req: Request, res: Response, next: NextFunction) => {
   res.header('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PUT');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
   try {
@@ -63,6 +65,7 @@ app.get('/api/v1/restaurants/:id', async (req: Request, res: Response, next: Nex
 //POST: Create a Restaurant
 app.post('/api/v1/restaurants', async (req: Request, res: Response, next: NextFunction) => {
   res.header('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PUT');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
   try {
@@ -84,6 +87,7 @@ app.post('/api/v1/restaurants', async (req: Request, res: Response, next: NextFu
 //PUT: Update Restaurants
 app.put('/api/v1/restaurants/:id', async (req: Request, res: Response, next: NextFunction) => {
   res.header('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PUT');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
   try {
@@ -105,6 +109,7 @@ app.put('/api/v1/restaurants/:id', async (req: Request, res: Response, next: Nex
 //DELETE: Delete a Restaurant
 app.delete('/api/v1/restaurants/:id', async (req: Request, res: Response, next: NextFunction) => {
   res.header('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PUT');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
   try {
@@ -125,6 +130,7 @@ app.delete('/api/v1/restaurants/:id', async (req: Request, res: Response, next: 
 //POST: Add a Review
 app.post('/api/v1/restaurants/:id/addReview', async (req: Request, res: Response, next: NextFunction) => {
   res.header('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PUT');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
   try {
